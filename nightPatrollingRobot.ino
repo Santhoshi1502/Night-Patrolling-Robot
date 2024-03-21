@@ -43,8 +43,8 @@ void setup() {
   M2.setSpeed(Speed);
   M3.setSpeed(Speed);
   M4.setSpeed(Speed);
-  SIM900.begin(9600);  // GSM module baud rate
-  bluetooth.begin(9600); // Bluetooth module baud rate
+  SIM900.begin(9600);  
+  bluetooth.begin(9600); 
 }
 
 void loop() {
@@ -55,7 +55,7 @@ void loop() {
 
 void detectSound() {
   int soundValue = analogRead(SOUND_PIN);
-  if (soundValue > 500) { // Adjust threshold as needed
+  if (soundValue > 500) { 
     sendSMS("Loud noise detected! Please check.");
   }
 }
@@ -80,32 +80,32 @@ void Bluetoothcontrol() {
 
 void sendSMS(String message) {
   Serial.println("Sending SMS...");
-  SIM900.print("AT+CMGF=1\r"); // Set the SMS mode to text
+  SIM900.print("AT+CMGF=1\r"); 
   delay(1000);
-  SIM900.println("AT + CMGS = \"+1234567890\""); // Replace with recipient's phone number
+  SIM900.println("AT + CMGS = \"+1234567890\""); 
   delay(1000);
-  SIM900.println(message); // Send the message
-  SIM900.println((char)26); // End AT command with a Ctrl+Z
+  SIM900.println(message); 
+  SIM900.println((char)26); 
   delay(1000);
   SIM900.println();
 }
 
 void pathFollowing() {
   int distance = sonar.ping_cm();
-  if (distance <= 10) { // If obstacle detected within 10 cm, stop and avoid obstacle
+  if (distance <= 10) { 
     stopMotors();
     delay(500);
     reverse();
     delay(1000);
-    int randomTurn = random(2); // Randomly choose left or right turn
+    int randomTurn = random(2); 
     if (randomTurn == 0) {
       turnLeft();
     } else {
       turnRight();
     }
-    delay(1000); // Delay to allow the turn
-    moveForward(); // Continue moving forward after avoiding obstacle
-  } else { // Otherwise, move forward
+    delay(1000); 
+    moveForward(); 
+  } else { 
     moveForward();
   }
 }
