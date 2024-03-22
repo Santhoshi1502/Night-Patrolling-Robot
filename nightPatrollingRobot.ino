@@ -9,7 +9,6 @@
 #define spoint 103
 #define SOUND_PIN A2
 
-Servo servo;
 AF_DCMotor M1(1);
 AF_DCMotor M2(2);
 AF_DCMotor M3(3);
