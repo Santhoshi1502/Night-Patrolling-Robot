@@ -1,32 +1,21 @@
-#include <Servo.h>
+
 #include <AFMotor.h>
 #include <SoftwareSerial.h>
 #include <NewPing.h>
 #include <GSM.h>
 
-#define Echo A0
-#define Trig A1
 #define motor 10
 #define Speed 170
 #define spoint 103
 #define SOUND_PIN A2
-
-char value;
-int distance;
-int Left;
-int Right;
-int L = 0;
-int R = 0;
-int L1 = 0;
-int R1 = 0;
 
 Servo servo;
 AF_DCMotor M1(1);
 AF_DCMotor M2(2);
 AF_DCMotor M3(3);
 AF_DCMotor M4(4);
-SoftwareSerial SIM900(7, 8); // RX, TX for GSM module
-SoftwareSerial bluetooth(2, 3); // RX, TX for Bluetooth module
+SoftwareSerial SIM900(7, 8); 
+SoftwareSerial bluetooth(2, 3); 
 
 #define TRIGGER_PIN  9
 #define ECHO_PIN     10
@@ -36,9 +25,9 @@ NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
 void setup() {
   Serial.begin(9600);
-  pinMode(Echo, OUTPUT);
-  pinMode(Trig, INPUT);
-  servo.attach(motor);
+  pinMode(SOUND_PIN, INPUT);
+  pinMode(ECHO_PIN, INPUT);
+  pinMode(TRIGGER_PIN, OUTPUT);
   M1.setSpeed(Speed);
   M2.setSpeed(Speed);
   M3.setSpeed(Speed);
